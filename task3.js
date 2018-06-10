@@ -12,9 +12,9 @@ var second = t % 60;
 function write_hour(hour) {
   if (hour === 0) {
     //pass
-  } else if ((hour%10 === 1) && ((hour / 10 | 0) != 1)) {
+  } else if ((hour%10 === 1) && ((hour % 100 | 0) != 11)) {
     process.stdout.write(hour.toString() + ' час ');
-  } else if ((hour%10 >= 2) && (hour%10 <= 4) && ((hour / 10 | 0) != 1)) {
+  } else if ((hour%10 >= 2) && (hour%10 <= 4) && (((hour / 10 | 0) % 10) != 1)) {
     process.stdout.write(hour.toString() + ' часа ');
   } else {
     process.stdout.write(hour.toString() + ' часов ');
@@ -34,7 +34,9 @@ function write_minute(minute) {
 }
 
 function write_second(second) {
-  if ((second%10 === 1) && ((second / 10 | 0) != 1)) {
+  if (second === 0) {
+    //pass
+  } else if ((second%10 === 1) && ((second / 10 | 0) != 1)) {
     process.stdout.write(second.toString() + ' секунда');
   } else if ((second%10 >= 2) && (second%10 <= 4) && ((second / 10 | 0) != 1)) {
     process.stdout.write(second.toString() + ' секунды');
